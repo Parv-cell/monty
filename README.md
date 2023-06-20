@@ -1,0 +1,7 @@
+C - Stacks, Queues - LIFO, FIFO
+
+
+BY:
+
+1. JOSHUA AJAYI
+2. NOHA FATHY
