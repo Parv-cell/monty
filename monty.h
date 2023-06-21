@@ -50,14 +50,14 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, FIFO, LIFO
  * @opCode: opcode
- * @func: function to handle opcode
+ * @fun: function to handle opcode
  *
  */
 
 typedef struct instruct_s
 {
 	char *opCode;
-	void (*func)(stack_t **stack, unsigned int line_number);
+	void (*fun)(stack_t **stack, unsigned int line_number);
 } instruct_t;
 
 

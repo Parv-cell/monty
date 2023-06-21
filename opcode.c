@@ -22,7 +22,7 @@ void (*ops_acq(char *opCode))(stack_t **stack, unsigned int lineNumb)
 	while (op_list[parv].opCode)
 	{
 		if (strcmp(opCode, op_list[i].opCode) == 0)
-			return (op_list[parv].func);
+			return (op_list[parv].fun);
 		parv++;
 	}
 	return (NULL);
