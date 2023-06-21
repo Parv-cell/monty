@@ -71,7 +71,7 @@ void push(stack_t **stack, unsigned int lineNumb)
  * @stack: head of list double pointer
  * @lineNumb: bytecode file line number
 */
-void pall(stack_t **stack, unsigned int lineNumb)
+void pall(stack_t **stack, unsigned int lineNumb __attribute__((__unused__)))
 {
 	stack_t *temp;
 

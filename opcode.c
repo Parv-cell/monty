@@ -15,6 +15,7 @@ void (*ops_acq(char *opCode))(stack_t **stack, unsigned int lineNumb)
 
 	instruct_t op_list[] = {
 		{"push", push},
+		{"pint", pint},
 		{"pall", pall},
 		{NULL, NULL},
 	};
