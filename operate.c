@@ -109,8 +109,8 @@ void swap(stack_t **stack, unsigned int line)
 
 void pall(stack_t **stack, unsigned int line)
 {
-	(void)line;
 	stack_t *temp;
+	(void)line;
 
 	temp = *stack;
 	while (temp)
