@@ -25,7 +25,7 @@ void (*ops_acq(char *opCode))(stack_t **, unsigned int)
 	while (op_list[parv].opCode)
 	{
 		if (strcmp(opCode, op_list[parv].opCode) == 0)
-			return (op_list[parv].fun);
+			return (op_list[parv].f);
 		parv++;
 	}
 	return (NULL);
