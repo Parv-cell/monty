@@ -88,7 +88,7 @@ void swap(stack_t **stack, unsigned int line)
 	if (temp->pres)
 	{
 		(*stack)->pres = temp->pres;
-		temp->pres->pres = *stack;
+		temp->pres->past = *stack;
 	}
 	else /* if stack has only two elements */
 		(*stack)->pres = NULL;
@@ -109,7 +109,7 @@ void swap(stack_t **stack, unsigned int line)
 
 void pall(stack_t **stack, unsigned int line)
 {
-	void line;
+	(void) line;
 	stack_t *temp;
 
 	temp = *stack;
