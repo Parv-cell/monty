@@ -9,22 +9,6 @@
 #include <unistd.h>
 #include <string.h>
 
-/**
- * struct monty_s - global variable for monty interpreter
- *
- * Description:
- * @line: line number of byte code
- * @arg: the opcode argument
- * @stack: stack of opcode
- *
-*/
-
-typedef struct monty_s
-{
-	char *arg;
-	unsigned int line;
-	stack_t *stack;
-} monty_t;
 
 /**
  * struct stack_s - doubly linked list rep of stack / queue
@@ -43,6 +27,23 @@ typedef struct stack_s
 	struct stack_s *past;
 	struct stack_s *pres;
 } stack_t;
+
+/**
+ * struct monty_s - global variable for monty interpreter
+ *
+ * Description:
+ * @line: line number of byte code
+ * @arg: the opcode argument
+ * @stack: stack of opcode
+ *
+*/
+
+typedef struct monty_s
+{
+	char *arg;
+	unsigned int line;
+	stack_t *stack;
+} monty_t;
 
 /**
  * struct instruct_s - the opcode and its function
