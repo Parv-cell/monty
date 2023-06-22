@@ -1,27 +1,4 @@
 #include "monty.h"
-#include <ctype.h>
-
-/**
- * _isdigit - checks if string is a number
- *
- * Description:
- * @strg: character string
- *
- * Return: 1 if string is number, otherwise (-1)
-*/
-
-int _isdigit(char *strg)
-{
-	int prv = 0;
-	/** loop through char string **/
-	while (strg[prv])
-	{
-		if (!(isdigit(strg[prv])))
-			return (-1);
-		prv++;
-	}
-	return (1);
-}
 
 /**
  * push - pushes stack element
@@ -65,26 +42,77 @@ void push(stack_t **stack, unsigned int lineNumb)
 }
 
 /**
+ * pop - removes top element of the stack
+ *
+ * Description:
+ * @stack: double pointer to head node list
+ * @lineNumb: line number of bytecode
+*/
+
+void pop(stack_t **stack, unsigned int lineNumb)
+{
+	stack_t *temp;
+
+	if (!(*stack))
+	{
+		printf("L%u: sorry can't pop an empty stack\n", lineNumb);
+		exit(EXIT_FAILURE);
+	}
+	temp = *stack;
+	if (!(*stack)->pres)
+		*stack = NULL;
+	else
+		*stack = (*stack)->pres, (*stack)->past = NULL;
+	free(temp);
+}
+
+/**
+ * swap - swaps top two elements of the stack
+ *
+ * Description:
+ * @stack: double pointer to head node list
+ * @lineNumb: line number of bytecode
+*/
+
+void swap(stack_t **stack, unsigned int lineNumb)
+{
+	stack_t *temp;
+
+	if (!(*stack) || !(*stack)->pres)
+	{
+		printf("L%u: sorry can't swap, stack too short\n", lineNumb);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->pres;
+	/* if the stack has more > two element */
+	if (temp->pres)
+	{
+		(*stack)->pres = temp->pres;
+		temp->pres->pres = *stack;
+	}
+	else /* if stack has only two elements */
+		(*stack)->pres = NULL;
+	(*stack)->past = temp;
+	temp->pres = *stack;
+	temp->past = NULL;
+	*stack = temp;
+}
+
+/**
  * pall - prints all elements
  *
  * Description:
  * @stack: head of list double pointer
  * @lineNumb: bytecode file line number
 */
-void pall(stack_t **stack, unsigned int lineNumb __attribute__((__unused__)))
+
+
+void pall(stack_t **stack, unsigned int lineNumb)
 {
+	void lineNumb;
 	stack_t *temp;
 
-	if (!(*stack))
-		return;
-
-	if (monty.arg)
-	{
-		printf("L%u: to usage: pall\n", lineNumb);
-		exit(EXIT_FAILURE);
-	}
-
-	temp = (*stack);
+	temp = *stack;
 	while (temp)
 	{
 		printf("%d\n", temp->p);

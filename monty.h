@@ -70,8 +70,12 @@ monty_t monty;
 
 /* code operations */
 
+void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
 void pall(stack_t **, unsigned int);
 void pint(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
+
+int _isdigit(char *);
 
 #endif
