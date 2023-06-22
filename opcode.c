@@ -19,6 +19,7 @@ void (*ops_acq(char *opCode))(stack_t **, unsigned int)
 		{"pop", pop},
 		{"swap", swap},
 		{"pall", pall},
+		{"nop", nop},
 		{NULL, NULL},
 	};
 
