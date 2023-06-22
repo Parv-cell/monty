@@ -13,7 +13,7 @@
  * struct monty_s - global variable for monty interpreter
  *
  * Description:
- * @lineNumb: line number of byte code
+ * @line: line number of byte code
  * @arg: the opcode argument
  * @stack: stack of opcode
  *
@@ -22,7 +22,7 @@
 typedef struct monty_s
 {
 	char *arg;
-	unsigned int lineNumb;
+	unsigned int line;
 	stack_t *stack;
 } monty_t;
 
@@ -57,7 +57,7 @@ typedef struct stack_s
 typedef struct instruct_s
 {
 	char *opCode;
-	void (*fun)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruct_t;
 
 

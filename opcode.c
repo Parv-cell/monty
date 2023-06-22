@@ -9,7 +9,7 @@
  * Return: NULL if function is invalid
 */
 
-void (*ops_acq(char *opCode))(stack_t **stack, unsigned int lineNumb)
+void (*ops_acq(char *opCode))(stack_t **, unsigned int)
 {
 	int parv = 0;
 
@@ -24,7 +24,7 @@ void (*ops_acq(char *opCode))(stack_t **stack, unsigned int lineNumb)
 
 	while (op_list[parv].opCode)
 	{
-		if (strcmp(opCode, op_list[i].opCode) == 0)
+		if (strcmp(opCode, op_list[parv].opCode) == 0)
 			return (op_list[parv].fun);
 		parv++;
 	}

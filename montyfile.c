@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * init_monty - initialise monty globally
+ * initMonty - initialise monty globally
  */
 
-void init_monty(void)
+void initMonty(void)
 {
 	monty.arg = NULL;
 	monty.stack = NULL;
-	monty.lineNumb = 0;
+	monty.line = 0;
 }
 
 /**
@@ -54,27 +54,28 @@ FILE *check_args(int arc, char **arv)
 int main(int arc, char **arv)
 {
 	FILE *fp;
-	size_t n = 0;
+	size_t p = 0;
+	char *lineptr = NULL, *opCode;
 	ssize_t flag;
 	const char DELIM[3] = " \t\n";
 	void (*func)(stack_t **, unsigned int);
 
 	fp = check_args(arc, arv);
 
-	while ((flag = getline(&lineptr, &n, fp) != -1))
+	while ((flag = getline(&lineptr, &p, fp) != -1))
 	{
-		monty.lineNumb++;
+		monty.line++;
 		opCode = strtok(lineptr, DELIM);
 		if (opCode)
 		{
 			func = ops_acq(opCode);
 			if (!func)
 			{
-				printf("L%d: unknown command %s\n", monty.lineNumb, opCode);
+				dprintf(2, "L%d: unknown command %s\n", monty.line, opCode);
 				exit(EXIT_FAILURE);
 			}
 			monty.arg = strtok(NULL, DELIM);
-			func(&monty.stack, monty.lineNumb);
+			func(&monty.stack, monty.line);
 		}
 	}
 	free(lineptr);

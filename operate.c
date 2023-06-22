@@ -5,10 +5,10 @@
  *
  * Description:
  * @stack: head of list double pointer
- * @lineNumb: bytcode line number
+ * @line: bytcode line number
 */
 
-void push(stack_t **stack, unsigned int lineNumb)
+void push(stack_t **stack, unsigned int line)
 {
 	int source;
 	stack_t *newNode;
@@ -16,19 +16,19 @@ void push(stack_t **stack, unsigned int lineNumb)
 	newNode = malloc(sizeof(size_t));
 	if (!newNode)
 	{
-		printf("Error: malloc(memory allocation) failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc(memory allocation) failed\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (!monty.arg || (_isdigit(monty.arg) == -1))
 	{
-		printf("L%u: to usage: push the integer\n", lineNumb);
+		dprintf(STDERR_FILENO, "L%u: to usage: push the integer\n", line);
 		exit(EXIT_FAILURE);
 	}
 	source = atoi(monty.arg);
 	newNode->p = source;
 	newNode->pres = NULL;
-	new_node->prev = NULL;
+	newNode->past = NULL;
 
 	if (!(*stack))
 	{
@@ -46,16 +46,16 @@ void push(stack_t **stack, unsigned int lineNumb)
  *
  * Description:
  * @stack: double pointer to head node list
- * @lineNumb: line number of bytecode
+ * @line: line number of bytecode
 */
 
-void pop(stack_t **stack, unsigned int lineNumb)
+void pop(stack_t **stack, unsigned int line)
 {
 	stack_t *temp;
 
 	if (!(*stack))
 	{
-		printf("L%u: sorry can't pop an empty stack\n", lineNumb);
+		dprintf(STDERR_FILENO, "L%u: sorry can't pop an empty stack\n", line);
 		exit(EXIT_FAILURE);
 	}
 	temp = *stack;
@@ -71,16 +71,16 @@ void pop(stack_t **stack, unsigned int lineNumb)
  *
  * Description:
  * @stack: double pointer to head node list
- * @lineNumb: line number of bytecode
+ * @line: line number of bytecode
 */
 
-void swap(stack_t **stack, unsigned int lineNumb)
+void swap(stack_t **stack, unsigned int line)
 {
 	stack_t *temp;
 
 	if (!(*stack) || !(*stack)->pres)
 	{
-		printf("L%u: sorry can't swap, stack too short\n", lineNumb);
+		dprintf(STDERR_FILENO, "L%u: sorry can't swap, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack)->pres;
@@ -103,13 +103,13 @@ void swap(stack_t **stack, unsigned int lineNumb)
  *
  * Description:
  * @stack: head of list double pointer
- * @lineNumb: bytecode file line number
+ * @line: bytecode file line number
 */
 
 
-void pall(stack_t **stack, unsigned int lineNumb)
+void pall(stack_t **stack, unsigned int line)
 {
-	void lineNumb;
+	void line;
 	stack_t *temp;
 
 	temp = *stack;
@@ -118,4 +118,22 @@ void pall(stack_t **stack, unsigned int lineNumb)
 		printf("%d\n", temp->p);
 		temp = temp->pres;
 	}
+}
+
+/**
+ * pint - prints element top of list
+ *
+ * Description:
+ * @stack: double pointer to head node of list
+ * @line: line number of bytecode
+*/
+
+void pint(stack_t **stack, unsigned int line)
+{
+	if (!(*stack))
+	{
+		dprintf(STDERR_FILENO, "L%u: sorry can't pint, the stack empty\n", line);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->p);
 }
